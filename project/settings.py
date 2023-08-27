@@ -72,7 +72,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://dgu-bamboo-test.netlify.app",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
-  
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = "project.urls"
