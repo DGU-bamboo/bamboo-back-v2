@@ -69,10 +69,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5174",
     "http://localhost:5174",
+    "https://dgu-bamboo-test.netlify.app",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
-    "https://dgu-bamboo-test.netlify.app/",
-]
+  
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = "project.urls"
