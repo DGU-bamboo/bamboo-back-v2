@@ -25,7 +25,7 @@ class SuggestionViewSet(
             return [IsAdminUser()]
         return []
 
-    @action(methods=["POST"], detail=True, permission_classes=[IsAdminUser])
+    @action(methods=["POST"], detail=True)
     def memo(self, request, *args, **kwargs):
         suggestion = self.get_object()
         memo = request.data.get("memo")
