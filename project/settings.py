@@ -23,10 +23,10 @@ if os.path.exists(f"{BASE_DIR}/.env"):
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-axhjv($2gb5$r6@!@1zr9)8#dmu0(%!mvuvw8=t6vs0&hc!(iv"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.getenv("DEBUG") == "True" else False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -69,6 +69,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5174",
     "http://localhost:5174",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
     "https://dgu-bamboo-test.netlify.app/",
 ]
 CORS_ALLOW_CREDENTIALS = True
