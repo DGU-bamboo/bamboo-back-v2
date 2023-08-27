@@ -1,3 +1,45 @@
+from core.models import BaseModel
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from post.models import Post
 
-# Create your models here.
+
+class Report(BaseModel):
+    class ReportType(models.TextChoices):
+        COMMON = "COMMON", _("COMMON")
+        NEMO = "NEMO", _("NEMO")
+
+    type = models.CharField(choices=ReportType.choices, max_length=15)
+    content = models.TextField(default="")
+    password = models.CharField(max_length=4)
+    is_approved = models.BooleanField(null=True)
+    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
+    filtered_content = models.TextField(default="")
+
+    @property
+    def postify(self):
+        if not self.deleted_at:
+            content = (
+                self.created_at.strftime("%Y.%m.%d %p %I:%M:%S")
+                + f"\n{self.filtered_content}"
+            )
+        else:
+            content = (
+                self.created_at.strftime("%Y.%m.%d %p %I:%M:%S")
+                + f"\n< 작성자의 요청에 의해 삭제된 제보입니다. >"
+            )
+        return content
+
+
+class MaintainerNemoReport(Report):
+    class Meta:
+        proxy = True
+        verbose_name = "니모 제보 (관리자용)"
+        verbose_name_plural = "니모 제보들 (관리자용)"
+
+
+class MaintainerCommonReport(Report):
+    class Meta:
+        proxy = True
+        verbose_name = "일반 제보 (관리자용)"
+        verbose_name_plural = "일반 제보들 (관리자용)"
