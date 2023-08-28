@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins
 
-from .models import *
-from .serializers import *
+from .models import Notification, Modal
+from .serializers import NotificationSerializer, NotificationDetailSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import Q

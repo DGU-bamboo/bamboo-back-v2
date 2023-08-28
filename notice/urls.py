@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import *
+from .views import NotificationViewSet
 from rest_framework import routers
 
 default_router = routers.SimpleRouter(trailing_slash=False)
