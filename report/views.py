@@ -7,11 +7,25 @@ from rest_framework.response import Response
 from post.models import Post
 from rest_framework import views
 from django.utils import timezone
+from rest_framework import status
 
 
 class ReportViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = ReportSerializer
     queryset = Report.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        response_data = {
+            "success": True,
+            "error": None,
+        }
+
+        return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 
     @action(methods=["GET"], detail=True, permission_classes=[IsAdminUser])
     def reject(self, request, *args, **kwargs):
