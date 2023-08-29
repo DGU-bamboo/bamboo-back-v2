@@ -1,9 +1,13 @@
 from rest_framework import viewsets, mixins
 
-from .models import *
-from .serializers import *
+from .models import Post, Comment
+from .serializers import (
+    PostSerializer,
+    PostDetailSerializer,
+    CommentSerializer,
+    CommentListSerializer,
+)
 from django.db.models import Count
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import filters
 from django.shortcuts import get_object_or_404
