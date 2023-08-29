@@ -9,8 +9,11 @@ from .serializers import (
 )
 from django.db.models import Count
 from rest_framework.response import Response
+
 from rest_framework import filters
+from .filters import PostTypeFilter
 from django.shortcuts import get_object_or_404
+from .paginations import PostPagination
 
 
 class PostViewSet(
@@ -18,7 +21,8 @@ class PostViewSet(
     mixins.RetrieveModelMixin,
     viewsets.GenericViewSet,
 ):
-    filter_backends = [filters.SearchFilter]
+    pagination_class = PostPagination
+    filter_backends = [PostTypeFilter, filters.SearchFilter]
     search_fields = ["content"]
 
     def get_serializer_class(self):

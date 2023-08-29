@@ -10,11 +10,14 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from datetime import datetime
+from .paginations import NoticePagination
 
 
 class NotificationViewSet(
     mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet
 ):
+    pagination_class = NoticePagination
+
     def get_serializer_class(self):
         if self.action == "retrieve":
             return NotificationDetailSerializer
