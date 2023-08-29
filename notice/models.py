@@ -16,3 +16,17 @@ class Modal(BaseModel):
     published_at = models.DateTimeField(null=True, blank=True)
     ended_at = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
+
+
+class MaintainerNotification(Notification):
+    class Meta:
+        proxy = True
+        verbose_name = "공지글 (관리자용)"
+        verbose_name_plural = "공지글들 (관리자용)"
+
+
+class MaintainerModal(Modal):
+    class Meta:
+        proxy = True
+        verbose_name = "모달창 (관리자용)"
+        verbose_name_plural = "모달창들 (관리자용)"
