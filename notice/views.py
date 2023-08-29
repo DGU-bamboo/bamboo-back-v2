@@ -1,5 +1,4 @@
 from rest_framework import viewsets, mixins
-
 from .models import Notification, Modal
 from .serializers import (
     NotificationSerializer,

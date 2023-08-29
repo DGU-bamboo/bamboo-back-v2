@@ -6,7 +6,7 @@ default_router = routers.SimpleRouter(trailing_slash=False)
 default_router.register("notices", NotificationViewSet, basename="notices")
 
 modal_router = routers.SimpleRouter(trailing_slash=False)
-modal_router.register("modals", ModalViewSet, basename="modalse")
+modal_router.register("modals", ModalViewSet, basename="modals")
 
 urlpatterns = [
     path("", include(default_router.urls)),
