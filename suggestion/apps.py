@@ -2,5 +2,8 @@ from django.apps import AppConfig
 
 
 class SuggestionConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'suggestion'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "suggestion"
+
+    def ready(self):
+        import suggestion.receivers
