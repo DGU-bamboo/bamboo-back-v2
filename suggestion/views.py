@@ -7,8 +7,6 @@ from rest_framework.response import Response
 
 
 class SuggestionViewSet(
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
     viewsets.GenericViewSet,
 ):
