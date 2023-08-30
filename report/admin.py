@@ -34,10 +34,8 @@ class MaintainerNemoReportAdmin(admin.ModelAdmin):
         "type",
         "post",
     ]
-    search_fields = ["filtered_content", "created_at"]
-    exclude = [
-        "deleted_at",
-    ]
+    search_fields = ["filtered_content", "created_at", "content"]
+    exclude = ["deleted_at"]
     list_filter = [NemoApproveFilter]
     list_display = ["id", "short_content", "created_at", "is_approved"]
 
@@ -58,12 +56,13 @@ class MaintainerCommonReportAdmin(admin.ModelAdmin):
         "type",
         "post",
     ]
-    search_fields = ["filtered_content", "created_at"]
-    exclude = [
-        "deleted_at",
-    ]
+    search_fields = ["filtered_content", "created_at", "content"]
+    exclude = ["deleted_at"]
     list_filter = [CommonApproveFilter]
-    list_display = ["id", "created_at", "is_approved"]
+    list_display = ["id", "short_content", "created_at", "is_approved"]
+
+    def short_content(self, instance):
+        return instance.content[:20]
 
     def get_queryset(self, request):
         return (

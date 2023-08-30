@@ -45,7 +45,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     def get_title(self, instance):
         if instance.deleted_at:
             return "작성자의 요청에 의해 삭제된 게시글입니다."
-        return instance.title
+        return "#" + str(instance.id) + "번째 뿌우"
 
     def get_content(self, instance):
         if instance.deleted_at:
@@ -60,6 +60,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     is_deleted = serializers.SerializerMethodField()
     content = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
     def get_is_deleted(self, instance):
         if instance.deleted_at:
@@ -68,9 +69,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ["id", "content", "is_deleted", "created_at"]
+        fields = ["id", "content", "is_deleted", "created_at", "password"]
         read_only_fields = ["post", "is_deleted"]
-        write_only_fields = ["password"]
 
 
 class CommentListSerializer(serializers.ModelSerializer):
