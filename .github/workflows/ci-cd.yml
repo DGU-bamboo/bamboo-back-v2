@@ -1,0 +1,44 @@
+# backend/.github/workflows/ci-cd.yml
+name: Django CI/CD
+
+on:
+  push:
+    branches: [ product ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create .env file
+      run: |
+        touch .env
+        echo SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
+        echo DEBUG=${{ secrets.DJANGO_DEBUG }} >> .env
+        echo API_URL=${{ secrets.DJANGO_API_URL }} >> .env
+        echo WEB_URL=${{ secrets.DJANGO_WEB_URL }} >> .env
+        echo FE_WEB_URL=${{ secrets.DJANGO_FE_WEB_URL }} >> .env
+        echo DISCORD_WEBHOOK_URL_NEMO=${{ secrets.DISCORD_WEBHOOK_URL_NEMO }} >> .env
+        echo DISCORD_WEBHOOK_URL_COMMON=${{ secrets.DISCORD_WEBHOOK_URL_COMMON }} >> .env
+        echo DISCORD_WEBHOOK_URL_COMMENT=${{ secrets.DISCORD_WEBHOOK_URL_COMMENT }} >> .env
+        echo DISCORD_WEBHOOK_URL_SUGGESTION=${{ secrets.DISCORD_WEBHOOK_URL_SUGGESTION }} >> .env
+        echo DISCORD_WEBHOOK_URL_UPLOAD=${{ secrets.DISCORD_WEBHOOK_URL_UPLOAD }} >> .env
+        echo DISCORD_WEBHOOK_URL_TEST=${{ secrets.DISCORD_WEBHOOK_URL_TEST }} >> .env
+        echo DATABASE_NAME=${{ secrets.DJANGO_DATABASE_NAME }} >> .env
+        echo DATABASE_USER=${{ secrets.DJANGO_DATABASE_USER }} >> .env
+        echo DATABASE_PASSWORD=${{ secrets.DJANGO_DATABASE_PASSWORD }} >> .env
+        echo DATABASE_HOST=${{ secrets.DJANGO_DATABASE_HOST }} >> .env
+        echo DATABASE_PORT=${{ secrets.DJANGO_DATABASE_PORT }} >> .env
+
+        cat .env
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile -t my_django_app
+
+    - name: Push to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push my_django_app
