@@ -51,8 +51,8 @@ jobs:
     steps:
     - name: connect ssh
       run: |
-        ssh -l {{secrets.DEPLOYMENT_USERNAME}} {{ secrets.DEPLOYMENT_HOST }}
-        {{ secrest.DEPLOYMENT_PASSWORD }}
+        ssh -l ${{ secrets.DEPLOYMENT_USERNAME }} ${{ secrets.DEPLOYMENT_HOST }}
+        ${{ secrest.DEPLOYMENT_PASSWORD }}
       
     - name: Deploy with docker compose
       run: |
