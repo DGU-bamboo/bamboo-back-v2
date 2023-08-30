@@ -61,7 +61,8 @@ jobs:
       run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       
     - name: Deploy with docker compose
+      working-directory: /bamboo
       run: |
-        sudo docker-compose -f /bamboo/docker-compose.yml down
-        sudo docker-compose -f /bamboo/docker-compose.yml pull
-        sudo docker-compose -f /bamboo/docker-compose.yml up -d
+        docker-compose down
+        docker-compose pull
+        docker-compose up -d
