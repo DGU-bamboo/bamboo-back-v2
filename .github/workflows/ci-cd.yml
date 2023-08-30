@@ -55,6 +55,7 @@ jobs:
         host: ${{ secrets.DEPLOYMENT_HOST }}
         username: ${{ secrets.DEPLOYMENT_USERNAME }}
         password: ${{ secrets.DEPLOYMENT_PASSWORD }}
+        port: ${{ secrets.DEPLOYMENT_PORT }}
 
     - name: Deploy with docker compose
       run: |
