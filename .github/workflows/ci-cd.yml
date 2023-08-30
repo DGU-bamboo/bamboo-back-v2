@@ -50,13 +50,10 @@ jobs:
 
     steps:
     - name: connect ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.DEPLOYMENT_HOST }}
-        username: ${{ secrets.DEPLOYMENT_USERNAME }}
-        password: ${{ secrets.DEPLOYMENT_PASSWORD }}
-        port: ${{ secrets.DEPLOYMENT_PORT }}
-
+      run: |
+        ssh -l {{secrets.DEPLOYMENT_USERNAME}} {{ secrets.DEPLOYMENT_HOST }}
+        {{ secrest.DEPLOYMENT_PASSWORD }}
+      
     - name: Deploy with docker compose
       run: |
         docker-compose down
