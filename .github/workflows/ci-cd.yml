@@ -46,4 +46,4 @@ jobs:
       run: docker build . --file Dockerfile -t bamboov2-back
 
     - name: Push to Docker Hub
-      run: docker push my_django_app
+      run: docker push bamboov2-back
