@@ -39,7 +39,7 @@ jobs:
       run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t bamboov2-back
+      run: docker build . --file Dockerfile -t sangjune2000/bamboov2-back
 
     - name: Push to Docker Hub
-      run: docker push bamboov2-back
+      run: docker push sangjune2000/bamboov2-back
