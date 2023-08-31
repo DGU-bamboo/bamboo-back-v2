@@ -6,7 +6,7 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
+RUN python3 manage.py collectstatic --noinput
 
 CMD ["python3", "manage,py", "migrate"]
 
