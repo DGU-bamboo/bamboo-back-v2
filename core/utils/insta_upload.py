@@ -88,7 +88,7 @@ def upload_with_selenium(image_path, content):
 
     # 로그인
     driver.get('https://www.instagram.com/accounts/login/')
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(25)
     driver.save_screenshot('login.png')
     # 유저네임 입력
     driver.find_element(By.NAME, 'username').send_keys(username)
