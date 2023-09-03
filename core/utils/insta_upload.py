@@ -3,6 +3,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -71,11 +72,15 @@ def upload_with_selenium(image_path, content):
     service.log_path = 'chromedriver.log'
     service.enable_tracing = True
 
-    options = webdriver.ChromeOptions(executable_path='/usr/bin/chromedriver')
-    options.add_argument('--headless')  # 헤드리스 모드
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=options)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    # options = webdriver.ChromeOptions(executable_path='/usr/bin/chromedriver')
+    # options.add_argument('--headless')  # 헤드리스 모드
+    # options.add_argument("--no-sandbox")
+    # options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_options)
     username = settings.INSTAGRAM_USERNAME
     password = settings.INSTAGRAM_PASSWORD
 
