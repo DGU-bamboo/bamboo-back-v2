@@ -9,13 +9,9 @@ RUN pip install -r requirements.txt
 RUN python3 manage.py collectstatic --noinput
 
 # Install system dependencies
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        wget unzip \
-        libxss1 libappindicator1 libindicator7 \
-        libasound2 libnss3 libx11-xcb1 libxtst6 xdg-utils && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y --no-install-recommends wget unzip libxss1 libappindicator1 libindicator7 libasound2 libnss3 libx11-xcb1 libxtst6 xdg-utils
 
 # Install Google Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
