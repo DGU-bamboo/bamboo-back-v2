@@ -1,5 +1,5 @@
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=green&height=300&section=header&text=DGU%20Bamboo&fontSize=90&animation=fadeIn&fontAlignY=38&desc=동국대학교%20학우들을%20위한%20자유로운%20소통의%20장,%20동국대학교%20"대나무숲"&descAlignY=58&descAlign=62)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=DGU%20Bamboo&fontSize=90&animation=fadeIn&fontAlignY=38&desc=동국대학교%20학우들을%20위한%20자유로운%20소통의%20장,%20"대나무숲"&descAlignY=58&descAlign=62)
 
 ## 🎋  About Service 대나무숲
 > 지금 당장 우리 학교에서 일어나는 일,<br>
@@ -7,7 +7,7 @@
 > 익명으로 함께 이곳 대나무숲에서 외쳐봐요! <br>
 > 👂 "임금님 귀는 당나귀!"🫅<br>
 
-익명 커뮤니티 대나무숲에서는 자유로운 내용을 담은 일반 제보가 가능하며, <br>
+익명 커뮤니티 "대나무숲"에서는 자유로운 내용을 담은 일반 제보가 가능하며, <br>
 직접 당신의 니모를 찾아볼 수 있어요! <br>
 
 
