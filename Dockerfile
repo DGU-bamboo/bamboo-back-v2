@@ -17,16 +17,16 @@ RUN apt-get update && apt-get install -y \
     libfontconfig1
 
 # 특정 버전의 Chrome 설치
-RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_91.0.4472.101-1_amd64.deb \
-    && dpkg -i google-chrome-stable_91.0.4472.101-1_amd64.deb; apt-get -fy install \
-    && mv /usr/bin/google-chrome-stable /usr/bin/google-chrome \
+RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.90-1_amd64.deb
+RUN dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb; apt-get -fy install
+RUN mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
 
 # 특정 버전의 ChromeDriver 설치
-RUN wget https://chromedriver.storage.googleapis.com/91.0.4472.19/chromedriver_linux64.zip \
-    && unzip chromedriver_linux64.zip \
-    && mv chromedriver /usr/bin/chromedriver \
-    && chown root:root /usr/bin/chromedriver \
-    && chmod +x /usr/bin/chromedriver
+RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip
+RUN mv chromedriver /usr/bin/chromedriver
+RUN chown root:root /usr/bin/chromedriver
+RUN chmod +x /usr/bin/chromedriver
 
 # ipv6 비활성화
 RUN echo 'net.ipv6.conf.all.disable_ipv6 = 1' > /etc/sysctl.d/disableipv6.conf
