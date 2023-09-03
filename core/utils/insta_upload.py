@@ -86,18 +86,18 @@ def upload_with_selenium(image_path, content):
 
     # 로그인
     driver.get('https://www.instagram.com/accounts/login/')
-    time.sleep(5)
+    time.sleep(10)
     # 유저네임 입력
     driver.find_element(By.NAME, 'username').send_keys(username)
     # 패스워드 입력
     driver.find_element(By.NAME, 'password').send_keys(password)
     # 로그인 버튼 클릭
     driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
-    time.sleep(5)
+    time.sleep(10)
     # 알림 설정 무시
     try:
         driver.find_element(By.CLASS_NAME, '_ac8f').click()
-        time.sleep(3)
+        time.sleep(7)
     except:
         pass
     try:
@@ -107,18 +107,18 @@ def upload_with_selenium(image_path, content):
     time.sleep(8)
     # 게시물 생성 클릭
     driver.find_element(By.XPATH, '//*[@aria-label="New post"]').click()
+    time.sleep(4)
     # 내 컴퓨터에서 열기
-    time.sleep(3)
     driver.find_element(By.XPATH, '//*[@class="_acan _acap _acas _aj1-"]')
     # 파일 입력
     driver.find_element(By.CSS_SELECTOR, "input[type='file']").send_keys(image_path)
     # 다음1
     driver.find_element(By.XPATH, '//div[text()="Next"]').click()
-    time.sleep(2)
+    time.sleep(4)
     # 다음2
     driver.find_element(By.XPATH, '//div[text()="Next"]').click()
-
-    time.sleep(2)
+    time.sleep(4)
+    # 게시글 입력
     div_content = driver.find_element(By.XPATH, '//div[@aria-label="Write a caption..."]')
     div_content.send_keys(content)
     time.sleep(5)
