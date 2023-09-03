@@ -179,16 +179,20 @@ DISCORD_WEBHOOK_URL_SUGGESTION = os.getenv("DISCORD_WEBHOOK_URL_SUGGESTION")
 DISCORD_WEBHOOK_URL_UPLOAD = os.getenv("DISCORD_WEBHOOK_URL_UPLOAD")
 DISCORD_WEBHOOK_URL_TEST = os.getenv("DISCORD_WEBHOOK_URL_TEST")
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "DEBUG",  # 로깅 레벨을 원하는 수준으로 설정
-    },
-}
+INSTAGRAM_USERNAME = os.getenv("INSTAGRAM_USERNAME")
+INSTAGRAM_PASSWORD = os.getenv("INSTAGRAM_PASSWORD")
+
+
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "console": {
+#             "class": "logging.StreamHandler",
+#         },
+#     },
+#     "root": {
+#         "handlers": ["console"],
+#         "level": "DEBUG",  # 로깅 레벨을 원하는 수준으로 설정
+#     },
+# }
