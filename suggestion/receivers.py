@@ -9,7 +9,7 @@ from django.conf import settings
 def suggestion_discord_sender(sender, instance, created, **kwargs):
     if created:
         admin_link = f"{settings.WEB_URL}/admin/suggestion/maintainersuggestion/{instance.id}/change/"
-        url = settings.DISCORD_WEBHOOK_URL_TEST
+        url = settings.DISCORD_WEBHOOK_URL_SUGGESTION
         message = f"""
                     > 📢**[건의사항]({admin_link})**이 도착했어요!
                     > 건의 내용 : {instance.content}
