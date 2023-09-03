@@ -34,7 +34,6 @@
 Django(DRF)
 
 ## 💻 Folder
-📂
 ```
 📂 bamboo-back-v2     #  repo root
 ┣ 📂 .github
