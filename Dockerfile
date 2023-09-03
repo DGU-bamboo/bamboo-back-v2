@@ -20,6 +20,11 @@ RUN apt-get update && apt-get install -y \
     libxi6 \
     libgconf-2-4
 
+# Install additional dependencies
+RUN apt-get install -y \
+    libxss1 \
+    libappindicator1
+
 # Install Chrome
 RUN wget -N https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install \
