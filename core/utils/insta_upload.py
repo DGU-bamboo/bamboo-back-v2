@@ -71,7 +71,7 @@ def upload_with_selenium(image_path, content):
     service.log_path = 'chromedriver.log'
     service.enable_tracing = True
 
-    options = webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions(executable_path='/usr/bin/chromedriver')
     options.add_argument('--headless')  # 헤드리스 모드
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
