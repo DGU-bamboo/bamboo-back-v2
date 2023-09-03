@@ -73,6 +73,8 @@ def upload_with_selenium(image_path, content):
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # 헤드리스 모드
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=options)
     username = settings.INSTAGRAM_USERNAME
     password = settings.INSTAGRAM_PASSWORD
