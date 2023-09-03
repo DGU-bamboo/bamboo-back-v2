@@ -10,6 +10,7 @@ RUN python3 manage.py collectstatic --noinput
 
 # Install system dependencies
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         wget unzip \
         libxss1 libappindicator1 libindicator7 \
