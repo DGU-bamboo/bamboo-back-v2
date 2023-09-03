@@ -3,6 +3,7 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
@@ -66,6 +67,10 @@ def thumbnail_generator(image_text, post_type):
 
 
 def upload_with_selenium(image_path, content):
+    service = Service("/root/.cache/selenium/chromedriver/linux64/116.0.5845.96/chromedriver")
+    service.log_path = 'chromedriver.log'
+    service.enable_tracing = True
+
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # 헤드리스 모드
     driver = webdriver.Chrome(options=options)
