@@ -73,12 +73,14 @@ def upload_with_selenium(image_path, content):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # options = webdriver.ChromeOptions(executable_path='/usr/bin/chromedriver')
-    # options.add_argument('--headless')  # 헤드리스 모드
-    # options.add_argument("--no-sandbox")
-    # options.add_argument("--disable-dev-shm-usage")
-    chrome_services = Service(executable_path='/usr/bin/chromedriver', log_path='chromedriver.log')
-    driver = webdriver.Chrome(service=chrome_services, options=chrome_options)
+
+    #Product용
+    # chrome_services = Service(executable_path='/usr/bin/chromedriver', log_path='chromedriver.log')
+    # driver = webdriver.Chrome(service=chrome_services, options=chrome_options)
+
+    #Local test용
+    driver = webdriver.Chrome(options=chrome_options)
+
     username = settings.INSTAGRAM_USERNAME
     password = settings.INSTAGRAM_PASSWORD
 
@@ -102,7 +104,7 @@ def upload_with_selenium(image_path, content):
         driver.find_element(By.CLASS_NAME, '_a9_1').click()
     except:
         pass
-    time.sleep(2)
+    time.sleep(8)
     # 게시물 생성 클릭
     driver.find_element(By.XPATH, '//*[@aria-label="New post"]').click()
     # 내 컴퓨터에서 열기
