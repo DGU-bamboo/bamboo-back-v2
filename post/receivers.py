@@ -1,7 +1,9 @@
+from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
 from core.utils.discord import send_to_discord
 from django.conf import settings
+
+from core.utils.insta_upload import upload_insta_post
 from post.models import Post, Comment, MaintainerPost
 from django.utils import timezone
 from post.signals import send_discord_upload
@@ -30,10 +32,11 @@ def post_discord_sender(post, **kwargs):
         send_to_discord(url, message)
 
 
-# @receiver(post_save, sender=Post)
-# def add_id_hashtag_in_post(sender, instance, created, **kwargs):
-#     if created:
-#         hashtag = " #" + str(instance.id) + "번째뿌우"
-#         instance.content += hashtag
-#         instance.save(update_fields=["content"])
-#         send_discord_upload.send(sender="add id hashtag in post", post=instance)
+@receiver(post_save, sender=Post)
+def add_id_hashtag_in_post(sender, instance, created, **kwargs):
+    if created:
+        # hashtag = " #" + str(instance.id) + "번째뿌우"
+        # instance.content += hashtag
+        # instance.save(update_fields=["content"])
+        send_discord_upload.send(sender="add id hashtag in post", post=instance)
+        upload_insta_post(instance)
