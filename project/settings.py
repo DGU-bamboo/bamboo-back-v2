@@ -79,6 +79,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    "www.dgu-bamboo.com",
+]
+
 ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
