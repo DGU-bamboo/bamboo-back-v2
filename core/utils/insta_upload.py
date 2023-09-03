@@ -75,6 +75,7 @@ def upload_with_selenium(image_path, content):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument(
         "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537")
+    chrome_options.add_argument('window-size=1920x1080')
     #Product용
     chrome_services = Service(executable_path='/usr/bin/chromedriver', log_path='chromedriver.log')
     driver = webdriver.Chrome(service=chrome_services, options=chrome_options)
@@ -87,7 +88,7 @@ def upload_with_selenium(image_path, content):
 
     # 로그인
     driver.get('https://www.instagram.com/accounts/login/')
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(30)
     driver.save_screenshot('login.png')
     # 유저네임 입력
     driver.find_element(By.NAME, 'username').send_keys(username)
