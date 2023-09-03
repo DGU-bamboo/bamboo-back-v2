@@ -32,6 +32,8 @@ jobs:
         echo DATABASE_PASSWORD=${{ secrets.DJANGO_DATABASE_PASSWORD }} >> .env
         echo DATABASE_HOST=${{ secrets.DJANGO_DATABASE_HOST }} >> .env
         echo DATABASE_PORT=${{ secrets.DJANGO_DATABASE_PORT }} >> .env
+        echo INSTAGRAM_USERNAME=${{ secrets.INSTAGRAM_USERNAME }} >> .env
+        echo INSTAGRAM_PASSWORD=${{ secrets.INSTAGRAM_PASSWORD }} >> .env
 
         cat .env
 

@@ -15,7 +15,7 @@ def suggestion_discord_sender(sender, instance, created, **kwargs):
         reject_url = f"{settings.API_URL}/reports/{instance.id}/reject"
         if instance.type == "NEMO":
             admin_link = f"{settings.WEB_URL}/admin/report/maintainernemoreport/{instance.id}/change/"
-            url = settings.DISCORD_WEBHOOK_URL_TEST
+            url = settings.DISCORD_WEBHOOK_URL_NEMO
             message = f"""
                         > 🐟 두근세근! **[니모 한 마리]({admin_link})**가 도착했어요!
                         > 제보 내용 : {instance.content}
@@ -25,7 +25,7 @@ def suggestion_discord_sender(sender, instance, created, **kwargs):
             send_to_discord(url, message)
         elif instance.type == "COMMON":
             admin_link = f"{settings.WEB_URL}/admin/report/maintainercommonreport/{instance.id}/change/"
-            url = settings.DISCORD_WEBHOOK_URL_TEST
+            url = settings.DISCORD_WEBHOOK_URL_COMMON
             message = f"""
                         > 🙉 임금님 귀는 당나귀 귀! **[일반 제보]({admin_link})**가 도착했어요!
                         > 제보 내용 : {instance.content[:50]}
