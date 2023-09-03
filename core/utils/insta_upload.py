@@ -73,13 +73,14 @@ def upload_with_selenium(image_path, content):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-
+    chrome_options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537")
     #Product용
-    # chrome_services = Service(executable_path='/usr/bin/chromedriver', log_path='chromedriver.log')
-    # driver = webdriver.Chrome(service=chrome_services, options=chrome_options)
+    chrome_services = Service(executable_path='/usr/bin/chromedriver', log_path='chromedriver.log')
+    driver = webdriver.Chrome(service=chrome_services, options=chrome_options)
 
-    #Local test용
-    driver = webdriver.Chrome(options=chrome_options)
+    # #Local test용
+    # driver = webdriver.Chrome(options=chrome_options)
 
     username = settings.INSTAGRAM_USERNAME
     password = settings.INSTAGRAM_PASSWORD
