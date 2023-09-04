@@ -16,7 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
         if instance.type == "COMMON":
             if instance.deleted_at:
                 return "작성자의 요청에 의해 삭제된 게시글입니다."
-            return instance.content[:20]
+            return instance.title
         elif instance.type == "NEMO":
             return instance.created_at.strftime("%Y-%m-%d %p %I시 %M분") + " 니모"
 
