@@ -43,8 +43,12 @@ def common_approve_to_post(sender, instance, **kwargs):
         except Report.DoesNotExist:
             return
         if old_instance.is_approved != True and instance.is_approved == True:
+            title = instance.filtered_content
+            if len(title) >= 20:
+                title = title[:18] + "…"
+
             post = Post.objects.create(
-                title=instance.filtered_content[:20],
+                title=title,
                 content=instance.postify + "\n\n#동국대학교대나무숲 #동대나무숲",
                 type="COMMON",
             )
