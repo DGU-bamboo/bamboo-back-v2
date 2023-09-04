@@ -26,7 +26,7 @@
 | -------------------------------------------- | --------------  | ----------------------- |
 | [김재니](https://github.com/kmjenny)   | 동국대학교 정보통신공학과  | kjn3008@dgu.ac.kr |
 | [박상준](https://github.com/tkdwns414) | 동국대학교 정보통신공학과   | sangjune2000@dgu.ac.kr |
-| [박영신](https://github.com/tkdwns414) | 동국대학교 컴퓨터공학전공   | 2022110233@dgu.ac.kr |
+| [박영신](https://github.com/dudtlstm) | 동국대학교 컴퓨터공학전공   | 2022110233@dgu.ac.kr |
 | [윤영서](https://github.com/0seoYun) | 동국대학교 AI융합학부    | ys.yun@dgu.ac.kr |
 
 
