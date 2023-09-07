@@ -14,7 +14,7 @@ def post_discord_sender(post, **kwargs):
     url = settings.DISCORD_WEBHOOK_URL_UPLOAD
     if post.type == "NEMO":
         admin_link = f"{settings.WEB_URL}/admin/post/maintainerpost/{post.id}/change/"
-        web_link = f"{settings.FE_WEB_URL}/detail/{post.id}"
+        web_link = f"{settings.FE_WEB_URL}/suggestion/{post.id}"
         message = f"""
                     > 🐠 **니모 제보**가 모여 [게시글]({web_link}) 업로드 완료!📋
                     > 인스타에 업로드 되었는지 확인해 주세요!
@@ -23,7 +23,7 @@ def post_discord_sender(post, **kwargs):
         send_to_discord(url, message)
     elif post.type == "COMMON":
         admin_link = f"{settings.WEB_URL}/admin/post/maintainerpost/{post.id}/change/"
-        web_link = f"{settings.FE_WEB_URL}/detail/{post.id}"
+        web_link = f"{settings.FE_WEB_URL}/suggestion/{post.id}"
         message = f"""
                     > 💌 **일반 제보**로 [게시글]({web_link}) 업로드 완료!📋
                     > 인스타에 업로드 되었는지 확인해 주세요!
