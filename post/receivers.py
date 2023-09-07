@@ -35,8 +35,8 @@ def post_discord_sender(post, **kwargs):
 @receiver(post_save, sender=Post)
 def add_id_hashtag_in_post(sender, instance, created, **kwargs):
     if created:
-        # hashtag = " #" + str(instance.id) + "번째뿌우"
-        # instance.content += hashtag
-        # instance.save(update_fields=["content"])
+        hashtag = " #" + str(instance.id) + "번째뿌우"
+        instance.content += hashtag
+        instance.save(update_fields=["content"])
         send_discord_upload.send(sender="add id hashtag in post", post=instance)
         # upload_insta_post(instance)
