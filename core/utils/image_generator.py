@@ -33,8 +33,8 @@ def thumbnail_generator(image_text, post_type):
     image.save(save_path)
 
     # 절대 경로 반환
-    absolute_path = os.path.abspath(save_path)
-    return absolute_path
+    os.path.abspath(save_path)
+    return save_path
 
 
 def thumbnail_generator_v2(image_text, post):
@@ -92,12 +92,11 @@ def common_thumbnail_with_text(image_text, post):
     # 이미지 저장
     save_path = os.path.join(settings.MEDIA_ROOT, f'latest_thumbnail.png')
     image.save(save_path)
-    absolute_path = os.path.abspath(save_path)
-    return absolute_path
+    return save_path
 
 
-def send_thumbnail_to_discord(absolute_path):
-    with open(file=absolute_path, mode='rb') as f:
+def send_thumbnail_to_discord(image_path):
+    with open(file=image_path, mode='rb') as f:
         files = {
             "file": ('created_thumbnail.png', f)
         }
