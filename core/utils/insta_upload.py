@@ -10,17 +10,21 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 from core.utils.discord import send_to_discord
+from core.utils.image_generator import thumbnail_generator, thumbnail_generator_v2, send_thumbnail_to_discord
 
 
 def upload_insta_post(post):
     try:
         image_text, content = create_post_content(post)  # 이미지에 넣을 텍스트, 게시글 문구
-        image_path = thumbnail_generator(image_text, post.type)  # 이미지 만들어서 저장
-        upload_with_selenium(image_path, content)  # 셀레니움으로 업로드
-        send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, "인스타 업로드 성공!")  # 성공하면 디코 알림
+        image_path = thumbnail_generator_v2(image_text, post)  # 이미지 만들어서 저장
+        send_thumbnail_to_discord(image_path)  # 디스코드에 썸네일 전송
+        # upload_with_selenium(image_path, content)  # 셀레니움으로 업로드
+        # send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, "인스타 업로드 성공!")  # 성공하면 디코 알림
     except Exception as e:
-        exception_message = "인스타 업로드 실패: " + str(e)
-        send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, exception_message) # 실패하면 디코 알림
+        exception_message = "썸네일 생성 실패: " + str(e)
+        send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, exception_message)
+        # exception_message = "인스타 업로드 실패: " + str(e)
+        # send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, exception_message) # 실패하면 디코 알림
     return True
 
 
@@ -35,36 +39,6 @@ def create_post_content(post):
         return image_text, content
 
     raise Exception(f"게시글 내용 생성 실패 - NEMO, COMMON에 해당하는 타입이 없습니다. 현재 타입: {post.type}")
-
-
-def thumbnail_generator(image_text, post_type):
-    if post_type == "NEMO":
-        default_img = os.path.join(settings.BASE_DIR, 'core', 'utils', 'nemo.png')
-    else:
-        default_img = os.path.join(settings.BASE_DIR, 'core', 'utils', 'common.png')
-
-    image = Image.open(default_img)
-
-    image_width, image_height = image.size
-    # draw 객체 생성
-    draw = ImageDraw.Draw(image)
-    # 폰트 설정
-    font_path = os.path.join(settings.BASE_DIR, 'core', 'utils', 'JalnanOTF.otf')
-    font = ImageFont.truetype(font_path, size=50)
-    # 텍스트 위치 및 색상 설정
-    _, _, text_width, text_height = draw.textbbox((0, 0), image_text, font=font)
-    text_position = ((image_width - text_width) // 2, 388)
-    text_color = "#04C96B"
-
-    # 텍스트 그리기
-    draw.text(text_position, image_text, fill=text_color, font=font)
-    # 이미지 저장
-    save_path = os.path.join(settings.MEDIA_ROOT, f'latest_thumbnail.png')
-    image.save(save_path)
-
-    # 절대 경로 반환
-    absolute_path = os.path.abspath(save_path)
-    return absolute_path
 
 
 def upload_with_selenium(image_path, content):
