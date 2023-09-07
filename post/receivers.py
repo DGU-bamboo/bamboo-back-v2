@@ -39,4 +39,4 @@ def add_id_hashtag_in_post(sender, instance, created, **kwargs):
         instance.content += hashtag
         instance.save(update_fields=["content"])
         send_discord_upload.send(sender="add id hashtag in post", post=instance)
-        # upload_insta_post(instance)
+        upload_insta_post(instance)
