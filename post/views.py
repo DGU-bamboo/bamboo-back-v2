@@ -23,7 +23,7 @@ class PostViewSet(
 ):
     pagination_class = PostPagination
     filter_backends = [TypeFilter, SearchFilter]
-    search_fields = ["title", "content"]
+    search_fields = ["content"]
 
     def get_serializer_class(self):
         if self.action == "retrieve":
