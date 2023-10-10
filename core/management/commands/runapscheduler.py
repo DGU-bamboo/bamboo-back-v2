@@ -55,7 +55,7 @@ class Command(BaseCommand):
 
         scheduler.add_job(
             periodic_nemo,
-            trigger=CronTrigger(hour="12,20", minute="00"),
+            trigger=CronTrigger(hour="12,16,20", minute="00"),
             id="periodic_nemo",  # The `id` assigned to each job MUST be unique
             max_instances=1,
             replace_existing=True,
