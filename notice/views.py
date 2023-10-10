@@ -38,8 +38,8 @@ class ModalViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
         queryset = Modal.objects.filter(
             Q(published_at__date__lte=today)
-            & Q(ended_at__date__gte=today)
+            & (Q(ended_at__date__gte=today) | Q(ended_at__isnull=True))
             & Q(is_active=True)
-        ).order_by("-id")[:1]
+        ).order_by("-id")
 
         return queryset
