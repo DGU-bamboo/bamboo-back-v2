@@ -33,7 +33,7 @@ def thumbnail_generator(image_text, post_type):
     image.save(save_path)
 
     # 절대 경로 반환
-    os.path.abspath(save_path)
+    # os.path.abspath(save_path)
     return save_path
 
 
