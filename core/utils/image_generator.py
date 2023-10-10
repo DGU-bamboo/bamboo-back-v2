@@ -4,6 +4,7 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 
+from core.utils.discord import send_to_discord
 from report.models import Report
 
 
@@ -30,8 +31,13 @@ def thumbnail_generator(image_text, post_type):
     draw.text(text_position, image_text, fill=text_color, font=font)
     # 이미지 저장
     save_path = os.path.join(settings.MEDIA_ROOT, f'latest_thumbnail.png')
+    # for debug
+    send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, f"NEMO 이미지 저장 전, {save_path}")
+
     image.save(save_path)
 
+    # for debug
+    send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, f"NEMO 이미지 저장 후, {save_path}")
     # 절대 경로 반환
     absolute_path = os.path.abspath(save_path)
     return absolute_path
@@ -91,7 +97,13 @@ def common_thumbnail_with_text(image_text, post):
 
     # 이미지 저장
     save_path = os.path.join(settings.MEDIA_ROOT, f'latest_thumbnail.png')
+    # for debug
+    send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, f"COMMON 이미지 저장 전, {save_path}")
+
     image.save(save_path)
+
+    # for debug
+    send_to_discord(settings.DISCORD_WEBHOOK_URL_UPLOAD, f"COMMON 이미지 저장 후, {save_path}")
 
     # 절대 경로 반환
     absolute_path = os.path.abspath(save_path)
